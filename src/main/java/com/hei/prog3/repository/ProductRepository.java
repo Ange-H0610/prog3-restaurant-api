@@ -1,3 +1,4 @@
+﻿
 package com.hei.prog3.repository;
 
 import com.hei.prog3.entity.Category;
@@ -16,6 +17,12 @@ public class ProductRepository {
         this.categoryRepository = categoryRepository;
     }
 
+    /**
+     * Récupère tous les produits avec pagination
+     * 
+     * @param page numéro de page (commence à 1)
+     * @param size nombre d'éléments par page
+     */
     public List<Product> getProductList(int page, int size) throws SQLException {
         String sql = "SELECT id, name, price, creation_datetime FROM product " +
                 "ORDER BY id LIMIT ? OFFSET ?";
@@ -39,6 +46,9 @@ public class ProductRepository {
         return products;
     }
 
+    /**
+     * Récupère tous les produits avec critères de filtrage
+     */
     public List<Product> getProductsByCriteria(String productName, String categoryName,
             Instant creationMin, Instant creationMax) throws SQLException {
         StringBuilder sql = new StringBuilder(
@@ -91,6 +101,9 @@ public class ProductRepository {
         return products;
     }
 
+    /**
+     * Récupère les produits avec filtres ET pagination
+     */
     public List<Product> getProductsByCriteria(String productName, String categoryName,
             Instant creationMin, Instant creationMax,
             int page, int size) throws SQLException {
