@@ -1,0 +1,33 @@
+# Créer le fichier .gitignore
+@"
+# Compiled files
+*.class
+target/
+*.jar
+*.war
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Environment variables
+.env
+*.env
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+"@ | Out-File -FilePath .gitignore -Encoding utf8
+
