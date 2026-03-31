@@ -33,10 +33,26 @@ public class DishService {
 
     public Optional<Dish> updateIngredients(int dishId, List<Ingredient> ingredients) {
         try {
-            Dish updatedDish = dishRepository.updateIngredients(dishId, ingredients);
-            return Optional.of(updatedDish);
+            // Correction: dishRepository.updateIngredients retourne Optional<Dish>
+            return dishRepository.updateIngredients(dishId, ingredients);
         } catch (SQLException e) {
             throw new RuntimeException("Error updating dish ingredients", e);
+        }
+    }
+
+    public List<Dish> createDishes(List<Dish> dishes) {
+        try {
+            return dishRepository.createDishes(dishes);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating dishes: " + e.getMessage(), e);
+        }
+    }
+
+    public List<Dish> findDishesWithFilters(Double priceUnder, Double priceOver, String name) {
+        try {
+            return dishRepository.findDishesWithFilters(priceUnder, priceOver, name);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error searching dishes: " + e.getMessage(), e);
         }
     }
 }
